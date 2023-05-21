@@ -12,14 +12,14 @@ import com.example.demo.model.Employee;
 @RestController
 public class HelloWorldController {
 
-	@GetMapping(value="/hello")
+	@GetMapping(value="/employee")
 	public ResponseEntity<Employee> HelloWord() {
 		Employee emp = new Employee();
 		
-		emp.setEmpId("123");
-		emp.setName("Duksun");
+		emp.setEmpId("1");
+		emp.setName("emp1");
 		emp.setSalary(3000d);
-		emp.setDesignation("Programmer7");
+		emp.setDesignation("manager");
 		
 //	    HttpHeaders headers = new HttpHeaders();
 //	    headers.set(HttpHeaders.CONTENT_TYPE, "application/json; charset=UTF-8");
