@@ -1,5 +1,8 @@
 package com.example.demo.controllers;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +21,7 @@ public class HelloWorldController {
 	private CoinsService service;
 	
 	@GetMapping(value="/coins/{bill}")
-	public ResponseEntity<Changes> changeRequest(@PathVariable Integer bill) {
+	public ResponseEntity<Changes> changeRequest(@PathVariable Integer bill) throws Exception {
 		Employee emp = new Employee();
 		
 		emp.setEmpId("1");
@@ -29,7 +32,8 @@ public class HelloWorldController {
 //	    HttpHeaders headers = new HttpHeaders();
 //	    headers.set(HttpHeaders.CONTENT_TYPE, "application/json; charset=UTF-8");
 //		headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
-	    
+		
+		
 		Changes changes = service.checkingAvailableConins(bill);
 //		System.out.println(changes);
 		

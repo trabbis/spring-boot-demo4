@@ -1,10 +1,12 @@
 package com.example.demo.service;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.controllers.InvalidBillException;
 import com.example.demo.model.Changes;
 import com.example.demo.model.Coins;
 import com.example.demo.repo.CoinsRepo;
@@ -15,7 +17,15 @@ public class CoinsService {
 	@Autowired
 	private CoinsRepo repo;
 	
-	public Changes checkingAvailableConins(Integer bill) {
+	public Changes checkingAvailableConins(Integer bill) throws InvalidBillException {
+		
+		List<Integer> validBill = Arrays.asList(1,2,5,20,50,100);
+		//Optional<Integer>
+		if (!validBill.contains(bill)) {
+			throw new InvalidBillException("invalid bill");
+		}
+		
+		
 		Double c01CurrentValue = 0d;
 		Double c05CurrentValue = 0d;
 		Double c10CurrentValue = 0d;
