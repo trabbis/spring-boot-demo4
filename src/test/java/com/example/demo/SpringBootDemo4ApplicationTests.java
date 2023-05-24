@@ -35,17 +35,42 @@ public class SpringBootDemo4ApplicationTests extends AbstractTestNGSpringContext
 	}
 
 	
+//	@Test
+//	public void testEmployee() throws Exception {
+//		mockMvc.perform(get("/employee"))
+//				.andExpect(status().isOk())
+//				//.andExpect(content().contentType("application/json;charset=UTF-8"))
+//				.andExpect(jsonPath("$.name").value("emp1"))
+//				.andExpect(jsonPath("$.designation").value("manager"))
+//				.andExpect(jsonPath("$.empId").value("1"))
+//				.andExpect(jsonPath("$.salary").value(3000));
+//
+//	}
+
+	
 	@Test
-	public void testEmployee() throws Exception {
-		mockMvc.perform(get("/employee"))
-				.andExpect(status().isOk())
-				//.andExpect(content().contentType("application/json;charset=UTF-8"))
-				.andExpect(jsonPath("$.name").value("emp1"))
-				.andExpect(jsonPath("$.designation").value("manager"))
-				.andExpect(jsonPath("$.empId").value("1"))
-				.andExpect(jsonPath("$.salary").value(3000));
-
+	public void changeRequestWithOneDollarBill() throws Exception   {
+		mockMvc.perform(get("/coins/1"))
+		.andExpect(status().isOk())
+		.andExpect(jsonPath("$['c25Cents']['count']").value("4"))
+		.andExpect(jsonPath("$['c25Cents']['totalValue']").value("1.0"));
 	}
-
+	
+	@Test
+	public void changeRequestWithTwoDollarBill() throws Exception   {
+		mockMvc.perform(get("/coins/2"))
+		.andExpect(status().isOk())
+		.andExpect(jsonPath("$['c25Cents']['count']").value("8"))
+		.andExpect(jsonPath("$['c25Cents']['totalValue']").value("2.0"));
+	}
+	
+	@Test
+	public void changeRequestWithFiveDollarBill() throws Exception   {
+		mockMvc.perform(get("/coins/5"))
+		.andExpect(status().isOk())
+		.andExpect(jsonPath("$['c25Cents']['count']").value("20"))
+		.andExpect(jsonPath("$['c25Cents']['totalValue']").value("5.0"));
+	}
+	
 	
 }
