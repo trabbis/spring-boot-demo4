@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.controllers.InvalidBillException;
+import com.example.demo.controllers.NotEnoughCoinsException;
 import com.example.demo.model.Changes;
 import com.example.demo.model.Coins;
 import com.example.demo.repo.CoinsRepo;
@@ -19,7 +20,7 @@ public class CoinsService {
 	
 	public Changes checkingAvailableConins(Integer bill) throws InvalidBillException {
 		
-		List<Integer> validBill = Arrays.asList(1,2,5,20,50,100);
+		List<Integer> validBill = Arrays.asList(1,2,5,10, 20,50,100);
 		//Optional<Integer>
 		if (!validBill.contains(bill)) {
 			throw new InvalidBillException("invalid bill");
@@ -109,6 +110,10 @@ public class CoinsService {
 					}
 				}
 			}
+		}
+		
+		if (billValue > 0.0d) {
+			throw new NotEnoughCoinsException("not enough coins");
 		}
 		return changes;
 		

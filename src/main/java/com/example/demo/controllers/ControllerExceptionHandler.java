@@ -14,7 +14,19 @@ public class ControllerExceptionHandler {
 
 	@ExceptionHandler(InvalidBillException.class)
 	@ResponseStatus(value = HttpStatus.BAD_REQUEST)
-	public @ResponseBody ExceptionResponse handleResourceNotFound(final InvalidBillException exception,
+	public @ResponseBody ExceptionResponse badRequest(final InvalidBillException exception,
+			final HttpServletRequest request) {
+
+		ExceptionResponse error = new ExceptionResponse();
+		error.setErrorMessage(exception.getMessage());
+		error.callerURL(request.getRequestURI());
+
+		return error;
+	}
+	
+	@ExceptionHandler(NotEnoughCoinsException.class)
+	@ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
+	public @ResponseBody ExceptionResponse notEnoughCoins(final NotEnoughCoinsException exception,
 			final HttpServletRequest request) {
 
 		ExceptionResponse error = new ExceptionResponse();
