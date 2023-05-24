@@ -1,19 +1,24 @@
 package com.example.demo.controllers;
 
-import org.springframework.http.HttpHeaders;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.model.Changes;
 import com.example.demo.model.Employee;
+import com.example.demo.service.CoinsService;
 
 @RestController
 public class HelloWorldController {
 
-	@GetMapping(value="/employee")
-	public ResponseEntity<Employee> HelloWord() {
+	@Autowired
+	private CoinsService service;
+	
+	@GetMapping(value="/coins/{bill}")
+	public ResponseEntity<Employee> HelloWord(@PathVariable Integer bill) {
 		Employee emp = new Employee();
 		
 		emp.setEmpId("1");
@@ -25,6 +30,9 @@ public class HelloWorldController {
 //	    headers.set(HttpHeaders.CONTENT_TYPE, "application/json; charset=UTF-8");
 //		headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
 	    
+		Changes changes = service.checkingAvailableConins(bill);
+		System.out.println(changes);
+		
 		return new ResponseEntity<>(emp, HttpStatus.OK);
 	}
 }
