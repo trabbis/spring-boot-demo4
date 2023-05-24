@@ -18,7 +18,7 @@ public class HelloWorldController {
 	private CoinsService service;
 	
 	@GetMapping(value="/coins/{bill}")
-	public ResponseEntity<Employee> HelloWord(@PathVariable Integer bill) {
+	public ResponseEntity<Changes> changeRequest(@PathVariable Integer bill) {
 		Employee emp = new Employee();
 		
 		emp.setEmpId("1");
@@ -31,8 +31,8 @@ public class HelloWorldController {
 //		headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
 	    
 		Changes changes = service.checkingAvailableConins(bill);
-		System.out.println(changes);
+//		System.out.println(changes);
 		
-		return new ResponseEntity<>(emp, HttpStatus.OK);
+		return new ResponseEntity<>(changes, HttpStatus.OK);
 	}
 }

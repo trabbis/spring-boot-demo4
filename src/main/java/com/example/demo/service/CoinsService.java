@@ -34,15 +34,15 @@ public class CoinsService {
 		for (Coins c : coins) {
 			if (c.getName().equalsIgnoreCase("c01")) {
 				c01Count = c.getCount();
-				c01CurrentValue = c.getCurrentValue();
+				c01CurrentValue = c.getTotalValue();
 			} else if (c.getName().equalsIgnoreCase("c05")) {
 				c05Count = c.getCount();
-				c05CurrentValue = c.getCurrentValue();
+				c05CurrentValue = c.getTotalValue();
 			} else if (c.getName().equalsIgnoreCase("c10")) {
 				c10Count = c.getCount();
-				c10CurrentValue = c.getCurrentValue();
+				c10CurrentValue = c.getTotalValue();
 			} else if (c.getName().equalsIgnoreCase("c25")) {
-				c25CurrentValue = c.getCurrentValue();
+				c25CurrentValue = c.getTotalValue();
 				c25Count = c.getCount();
 			}
 		}
@@ -100,13 +100,7 @@ public class CoinsService {
 				}
 			}
 		}
-
 		return changes;
-		
-		
-		
-		
-		
 		
 		
 	}

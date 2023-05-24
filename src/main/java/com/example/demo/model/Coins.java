@@ -4,8 +4,6 @@ public class Coins {
 	private String name;
 	private Integer count;
 	private Double coinValue;
-//	private Double currentValue;
-	
 	
 	
 	public Integer getCount() {
@@ -24,8 +22,8 @@ public class Coins {
 		this.coinValue = coinValue;
 	}
 
-	public Double getCurrentValue() {
-		return count * coinValue;
+	public Double getTotalValue() {
+		return getCount() * getCoinValue();
 	}
 
 	public Coins(String n, Integer b, Double v) {
